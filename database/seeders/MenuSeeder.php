@@ -42,7 +42,7 @@ class MenuSeeder extends Seeder
         Menu::create([
             'menu_titles_id' => 2,
             'name' => 'Surat Izin',
-            'url' => 'permit',
+            'url' => 'izin',
             'icon' => 'fas fa-id-card',
             'active' => 1,
             'queu' => 2
