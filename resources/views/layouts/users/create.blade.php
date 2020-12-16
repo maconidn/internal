@@ -10,7 +10,7 @@
         </div>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-6 col-sm-6">
-                <form action="{{route('outmail.create')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('add.user')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @include('layouts.users.partials.form')
                 </form>

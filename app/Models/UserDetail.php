@@ -9,6 +9,12 @@ class UserDetail extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'nik',
+        'avatar'
+    ];
+
     public function users()
     {
         return $this->belongsTo(User::class);
