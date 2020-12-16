@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Position;
 use App\Models\User;
+use App\Models\UserDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -57,9 +59,7 @@ class UsersController extends Controller
                 [
                     'name' => 'required|max:50|min:3|',
                     'email' => 'required|max:50|min:3|unique:users,email',
-                    'avatar' => 'required|image|mimes:png,jpeg,jpg,gif',
-                    'alamat' => 'required|max:100|min:3',
-                    'nara_hubung' => 'required|max:100|min:3'
+                    // 'avatar' => 'required|image|mimes:png,jpeg,jpg,gif',
                 ],
                 [
                     'name.required' => 'Nama harus diisi',
@@ -69,15 +69,9 @@ class UsersController extends Controller
                     'email.min' => 'Email minimal 3 huruf',
                     'email.max' => 'Email maximal 50 huruf',
                     'email.unique' => 'Email sudah tersedia',
-                    'image.required' => 'Logo klien tidak boleh kosong',
-                    'image.image' => 'Harus file gambar',
-                    'image.mimes' => 'Extensi yang disarankan png, jpeg, jpg, gif',
-                    'alamat.required' => 'Alamat harus diisi',
-                    'alamat.min' => 'Alamat minimal 3 huruf',
-                    'alamat.max' => 'Alamat maximal 50 huruf',
-                    'nara_hubung.required' => 'PIC harus diisi',
-                    'nara_hubung.min' => 'PIC minimal 3 huruf',
-                    'nara_hubung.max' => 'PIC maximal 50 huruf',
+                    'avatar.required' => 'Foto tidak boleh kosong',
+                    'avatar.image' => 'Harus file gambar',
+                    'avatar.mimes' => 'Extensi yang disarankan png, jpeg, jpg, gif',
                 ]
             );
         }
@@ -88,5 +82,33 @@ class UsersController extends Controller
         $btnLabel = 'Tambah';
 
         return view('layouts.users.create', compact('title', 'btnLabel'));
+    }
+
+    public function store(Request $request)
+    {
+        $this->_validation($request);
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->divitions_id = 1;
+        $user->positions_id = 4;
+        $user->password = Hash::make('password');
+        $user->save();
+
+        $user->details()->create([
+            'nik' => '123123',
+            'avatar' => 'avatar-1.png',
+        ]);
+
+        // User::create([
+        //     'divitions_id' => '1',
+        //     'positions_id' => '4',
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => Hash::make('password')
+        // ]);
+
+        return redirect()->route('user');
     }
 }

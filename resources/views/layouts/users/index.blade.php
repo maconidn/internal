@@ -49,24 +49,23 @@
                                         <div class="user-item">
                                             <img alt="image" src="{{ asset('storage/img/avatar/' . $user->details->avatar) }}" class="img-fluid">
                                             <i class="avatar-presence online"></i>
-                                            <div class="user-details">
-                                                <div class="user-name">{{ $user->name }}</div>
-                                                <div class="text-job text-muted">{{ $user->divitions->name }}</div>
-                                                <div class="text-job text-muted">{{ $user->positions->name }}</div>
-                                                <div class="user-cta">
-                                                    <a class="btn btn-primary text-white" href="{{ route('show.detail.user', $user) }}">Detail</a>
+                                            <a href="{{ route('show.detail.user', $user) }}">
+                                                <div class="user-details">
+                                                    <div class="user-name">{{ $user->name }}</div>
+                                                    <div class="text-job text-muted">{{ $user->divitions->name }}</div>
+                                                    <div class="text-job text-muted">{{ $user->positions->name }}</div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                                 @endforeach
                             </div>
                         </div>
-                    </div>
-                    {{ $users->links() }}
                 </div>
+                {{ $users->links() }}
             </div>
+        </div>
     </section>
 </div>
 <!-- End Main Content -->
