@@ -62,8 +62,7 @@
                                         @endif
                                     </div>
                                     <div class="card-body">
-                                        <p>Alasan Izin : {{ $i->reason }}</p>
-                                        <p>Dari Tanggal : {{ $i->start_at->format('d-M-Y') . ' s/d ' . $i->end_at->format('d-M-Y') . ' ( ' . $i->end_at->diff($i->start_at)->format('%a') . 'Hari )' }}</p>
+                                        <p>Alasan Izin : {{ $i->reason }}`Dari Tanggal : {{ $i->start_at->format('d-M-Y') . ' s/d ' . $i->end_at->format('d-M-Y') . ' ( ' . $i->end_at->diff($i->start_at)->format('%a') . 'Hari )' }}</p>
                                     </div>
                                 </div>
                             </div>
