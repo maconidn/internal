@@ -17,7 +17,7 @@ class CreateMailNumbersTable extends Migration
             $table->id();
             $table->string('for');
             $table->string('subject');
-            $table->bigInteger('user_id');
+            $table->bigInteger('users_id');
             $table->bigInteger('divitions_id');
             $table->timestamps();
         });
